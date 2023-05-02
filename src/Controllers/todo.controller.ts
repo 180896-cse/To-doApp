@@ -13,13 +13,13 @@ var toDoService = new todoService();
 
 
 // Creation of task request status code 201 {data: success}
-const createTask = async (req:Request, res:Response)=>{
+const createTask = async (req:Request, res:Response):Promise<void> =>{
    
     try {
         const body = req.body.todoValue
         res.json((await toDoService.createTask(body)).msg);
     } catch (error) {
-        console.log(`error occured at create task ${error}`);
+        console.error(`error occured at create task ${error}`);
         
     }
        
@@ -31,7 +31,7 @@ const createTask = async (req:Request, res:Response)=>{
 
 
 // Getting all task 
-const getAllTask = async (req:Request, res:Response)=> {
+const getAllTask = async (req:Request, res:Response):Promise<void> => {
     const allTask = await todoTask.find();
         res.render("../src/views/pages/home",{allTodos:allTask});
     
@@ -42,15 +42,23 @@ const getAllTask = async (req:Request, res:Response)=> {
 
 
 // Updating task from DB
-const updateTask = async (req:Request,res:Response)=> {
-    const updtTask = req.body.todoValue;
-    const updatedTask = await todoTask.updateOne(
-        {"_id" : req.params._id},
-        {$set:{task:updtTask}},
-    ).then(()=>{
-        console.log(`Task updated sucessfully`);
-        res.redirect("/");
-       }).catch((err)=>console.log(`error occured at updataion of task ${err}`));
+const updateTask = async (req:Request,res:Response) : Promise<void> => {
+    try {
+        const body:String = req.body.todoValue;
+        const upId:String = req.params._id;
+        res.json((await toDoService.updtTask(body,upId)).msg)
+
+    } catch (error) {
+        console.error(`error occured at Update task ${error}`);
+    }
+    // const updtTask = req.body.todoValue;
+    // const updatedTask = await todoTask.updateOne(
+    //     {"_id" : req.params._id},
+    //     {$set:{task:updtTask}}
+    // ).then(()=>{
+    //     console.log(`Task updated sucessfully`);
+    //     res.redirect("/");
+    //    }).catch((err)=>console.log(`error occured at updataion of task ${err}`));
    
 }
 
@@ -59,7 +67,7 @@ const updateTask = async (req:Request,res:Response)=> {
 
 
 // Deleting task from DB
-const delTask = async(req:Request,res:Response)=>{
+const delTask = async(req:Request,res:Response) : Promise<void> =>{
     try {
         const id = req.params._id;
         res.json((await toDoService.deleteTask(id)).msg);

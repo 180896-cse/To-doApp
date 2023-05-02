@@ -51,6 +51,18 @@ export class todoService {
             return (deltres);
         };
 
+        async updtTask(updtask:String,id:String):Promise<respons>{
+                await todoTask.updateOne(
+                    {"_id" : id},
+                    {$set:{task:updtask}}
+                )
+                let updtres={
+                    "code": 202,
+                    "msg":"Task updated Sucessfully!!"
+                };
+                return (updtres);   
+        }
+
         
 }
 
