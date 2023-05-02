@@ -1,30 +1,37 @@
 import path from "path";
 import todoTask from "../models/todo.model";
-import { NextFunction, Request, Response } from "express";
-import { ParamsDictionary } from "express-serve-static-core";
-import { ParsedQs } from "qs";
+import {Request, Response } from "express";
+
 
 //custom type
 type respons = {
-  code: number;
-  msg: String;
+  "code": number;
+  "msg": String;
 };
 
 
-interface create {
-    createTask(arg1:Request,arg2:Response):{};
-}
+// interface create {
+//     createTask(task:String):{};
+// }
 
-export class todoService implements create{
-        createTask(req: Request, res: Response): {}{
-            const task:String = req.body.todoValue;
+export class todoService{
+        createTask(task:String):respons{
             todoTask.create({ task });
-            let crtres:respons ={
+            let crtres={
                     "code": 201,
                     "msg":"Task Created Sucessfully!!"
-            }
-            return res.json({crtres});
-        }
+            };
+            return (crtres);
+        };
+
+       getAlltask():respons{
+            todoTask.find(); 
+            let getres={
+                "code": 200,
+                "msg":"Task listed Sucessfully!!"
+            };
+            return (getres);      
+        };
 
 }
 

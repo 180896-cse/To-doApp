@@ -16,16 +16,12 @@ catch(err){
 
 
 
-
-
-
-
 // Creation of task request status code 201 {data: success}
 const createTask = async (req:Request, res:Response)=>{
     try {
-        toDoService.createTask(req,res); 
+        res.json(toDoService.createTask(req.body.todoValue)); 
     } catch (error) {
-        console.log(`error occured at create tsk ${error}`);
+        console.log(`error occured at create task ${error}`);
         
     }
        
@@ -39,7 +35,9 @@ const createTask = async (req:Request, res:Response)=>{
 // Getting all task 
 const getAllTask = async (req:Request, res:Response)=> {
     const allTask = await todoTask.find();
-    res.render("../src/views/pages/home",{allTodos:allTask});
+        res.render("../src/views/pages/home",{allTask});
+    
+   
 }
 
 

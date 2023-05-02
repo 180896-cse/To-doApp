@@ -1,12 +1,23 @@
 import express, { Application } from "express";
 import path from "path";
 import bodyParser from "body-parser";
-import DBconnect  from "./config/db.connect";
+import {Database}  from "./config/db.connect";
 
 
 
 //database connection function call up
-DBconnect();
+// DBconnect();
+
+// database instance creation and connection function call .
+try {
+    var DBConnect = new Database;
+    DBConnect.DBconnect();
+} catch (error) {
+    console.log(`error handled at app.ts with db_connection ${error}`);
+    
+}
+
+
 
 const app:Application = express();
 
