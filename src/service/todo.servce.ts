@@ -14,9 +14,11 @@ type respons = {
 //     createTask(task:String):{};
 // }
 
-export class todoService{
-        createTask(task:String):respons{
-            todoTask.create({ task });
+export class todoService {
+
+        async createTask(task:String):Promise<respons>{
+
+           await todoTask.create({ task });
             let crtres={
                     "code": 201,
                     "msg":"Task Created Sucessfully!!"
@@ -24,8 +26,9 @@ export class todoService{
             return (crtres);
         };
 
-       getAlltask():respons{
-            todoTask.find(); 
+
+       async getAlltask():Promise<respons>{
+           await todoTask.find(); 
             let getres={
                 "code": 200,
                 "msg":"Task listed Sucessfully!!"
@@ -33,17 +36,21 @@ export class todoService{
             return (getres);      
         };
 
-        deleteTask(taskid:any):respons{
-           todoTask.findByIdAndDelete(taskid);
+        async deleteTask(taskid:String):Promise<respons>{
+
+          const res =  await todoTask.deleteOne(
+                {"_id": taskid},               
+                {new: true}
+                )
+                console.log(res);
+                
             let deltres={
                     "code": 200,
                     "msg":"Task Deleted Sucessfully!!"
             };
             return (deltres);
         };
-        updateTask():void{
-            
-        }
 
+        
 }
 

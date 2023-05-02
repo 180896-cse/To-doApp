@@ -6,20 +6,18 @@ import {todoService} from "../service/todo.servce";
 
 
 //creating an instance for To-do service
-try{
-var toDoService = new todoService;
-}
-catch(err){
-    console.log(`error occured in class of todo: ${err}`);
-};
+var toDoService = new todoService();
+
 
 
 
 
 // Creation of task request status code 201 {data: success}
 const createTask = async (req:Request, res:Response)=>{
+   
     try {
-        res.json(toDoService.createTask(req.body.todoValue)); 
+        const body = req.body.todoValue
+        res.json((await toDoService.createTask(body)).msg);
     } catch (error) {
         console.log(`error occured at create task ${error}`);
         
@@ -45,9 +43,10 @@ const getAllTask = async (req:Request, res:Response)=> {
 
 // Updating task from DB
 const updateTask = async (req:Request,res:Response)=> {
-    const updatedTask = await todoTask.findByIdAndUpdate(
-        req.params._id,
-        req.body.todoValue
+    const updtTask = req.body.todoValue;
+    const updatedTask = await todoTask.updateOne(
+        {"_id" : req.params._id},
+        {$set:{task:updtTask}},
     ).then(()=>{
         console.log(`Task updated sucessfully`);
         res.redirect("/");
@@ -63,11 +62,12 @@ const updateTask = async (req:Request,res:Response)=> {
 const delTask = async(req:Request,res:Response)=>{
     try {
         const id = req.params._id;
-        res.json(toDoService.deleteTask(id));
+        res.json((await toDoService.deleteTask(id)).msg);
     } catch (error) {
         console.log(`error occured at deletion of task: ${error}`);
   
     }
+    
 
     
 
