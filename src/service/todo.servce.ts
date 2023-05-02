@@ -33,5 +33,17 @@ export class todoService{
             return (getres);      
         };
 
+        deleteTask(taskid:any):respons{
+           todoTask.findByIdAndDelete(taskid);
+            let deltres={
+                    "code": 200,
+                    "msg":"Task Deleted Sucessfully!!"
+            };
+            return (deltres);
+        };
+        updateTask():void{
+            
+        }
+
 }
 

@@ -35,7 +35,7 @@ const createTask = async (req:Request, res:Response)=>{
 // Getting all task 
 const getAllTask = async (req:Request, res:Response)=> {
     const allTask = await todoTask.find();
-        res.render("../src/views/pages/home",{allTask});
+        res.render("../src/views/pages/home",{allTodos:allTask});
     
    
 }
@@ -61,13 +61,24 @@ const updateTask = async (req:Request,res:Response)=> {
 
 // Deleting task from DB
 const delTask = async(req:Request,res:Response)=>{
-    const id = req.params._id;
-    const deleteTask = await todoTask.findByIdAndDelete(
-        id
-        ).then(()=>{
-            console.log(`Task deleted sucessfully`);
-            res.redirect("/");
-           }).catch((err)=>console.log(`error occured at deletion of task ${err}`));
+    try {
+        const id = req.params._id;
+        res.json(toDoService.deleteTask(id));
+    } catch (error) {
+        console.log(`error occured at deletion of task: ${error}`);
+  
+    }
+
+    
+
+
+    // const id = req.params._id;
+    // const deleteTask = await todoTask.findByIdAndDelete(
+    //     id
+    //     ).then(()=>{
+    //         console.log(`Task deleted sucessfully`);
+    //         res.redirect("/");
+    //        }).catch((err)=>console.log(`error occured at deletion of task ${err}`));
 }
 
 
