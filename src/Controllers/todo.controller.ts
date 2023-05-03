@@ -44,8 +44,8 @@ const getAllTask = async (req:Request, res:Response):Promise<void> => {
 // Updating task from DB
 const updateTask = async (req:Request,res:Response) : Promise<void> => {
     try {
-        const body:String = req.body.todoValue;
-        const upId:String = req.params._id;
+        const body:String = req.body;
+        const upId:String = req.params.id;
         res.json((await toDoService.updtTask(body,upId)).msg)
 
     } catch (error) {

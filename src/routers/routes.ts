@@ -14,7 +14,7 @@ routers.route("/api/todoVal").post(createTask);
 
 routers.route("/delete/todo/:_id").get(delTask);
 
-routers.route("/update/todo/:_id").put(updateTask);
+routers.route("/update/todo/:id").put(updateTask);
 
 routers.route("/*").get(errPage);
 

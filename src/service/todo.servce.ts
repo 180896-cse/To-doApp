@@ -52,10 +52,13 @@ export class todoService {
         };
 
         async updtTask(updtask:String,id:String):Promise<respons>{
-                await todoTask.updateOne(
-                    {"_id" : id},
-                    {$set:{task:updtask}}
+               const updtTask = await todoTask.findByIdAndUpdate(
+                    id,
+                    updtask,
+                    {new:true}
                 )
+                console.log(updtTask);
+                
                 let updtres={
                     "code": 202,
                     "msg":"Task updated Sucessfully!!"
@@ -63,6 +66,6 @@ export class todoService {
                 return (updtres);   
         }
 
-        
+       
 }
 
