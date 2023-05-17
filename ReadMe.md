@@ -40,6 +40,11 @@ npm start
 ```
 npm start
 ```
+* To deploy the code over aws Lambda serverless
+```
+npm run build
+npm run deploy
+```
 
 ## Authors
 
