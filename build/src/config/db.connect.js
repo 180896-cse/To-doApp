@@ -5,27 +5,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Database = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
+const path_1 = __importDefault(require("path"));
+//reading .env file
+require("dotenv").config({ path: path_1.default.resolve(__dirname, "../../.env") });
 class Database {
     DBconnect() {
-        var db = "mongodb+srv://shantanu19nagarro:Shan1234@logindb.lm4a4fh.mongodb.net/?retryWrites=true&w=majority";
-        mongoose_1.default.connect(db).then(() => {
+        var db = process.env.mongo_db_conn_string || ".env file mot found!";
+        mongoose_1.default
+            .connect(db)
+            .then(() => {
             // return dbInstance;
             console.log("connection with MongoDB is sucess!!");
-        }).catch((err) => {
+        })
+            .catch((err) => {
             console.log(`Failed connection with error: ${err}`);
         });
     }
 }
 exports.Database = Database;
-// const db:string = "mongodb+srv://shantanu19nagarro:Shan1234@logindb.lm4a4fh.mongodb.net/?retryWrites=true&w=majority";
-// const DBconnect = (): void =>{
-//     mongoose.connect(db).then(()=>{
-//         // return dbInstance;
-//         console.log("connection with DB is sucess!!");
-//     }).catch((err)=>{
-//             console.log(`Failed connection with error: ${err}`);
-//     })
-// };
-// //class mongodbDriver
-// // connect(): void
-// export default DBconnect;

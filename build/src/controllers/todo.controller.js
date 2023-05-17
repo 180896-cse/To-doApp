@@ -29,7 +29,7 @@ const createTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.createTask = createTask;
-// Getting all task 
+// Getting all task
 const apiTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     yield res.send("api Test ok!");
 });
@@ -81,15 +81,3 @@ const errPage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.render(path_1.default.join(__dirname, "../views/pages/404.hbs"));
 });
 exports.errPage = errPage;
-// module.exports = {
-//     createTask,
-//     getAllTask,
-//     errPage
-// };
-// const task = req.body.todoValue;
-// await todoTask.create({
-//     task
-//    }).then(()=>{
-//         res.status(201);
-//         res.redirect("/");
-//    }).catch((err)=>console.log(err));

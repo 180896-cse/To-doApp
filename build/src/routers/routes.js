@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const todo_controller_1 = require("../controllers/todo.controller");
 const routers = express_1.default.Router();
-//class TODORoutes 
+//class TODORoutes
 // all inside
 // const getAllTask = require("../Controllers/todo.controller").getAllTask;
 // const createTask = require("../Controllers/todo.controller").createTask;

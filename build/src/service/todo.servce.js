@@ -22,45 +22,44 @@ class todoService {
         return __awaiter(this, void 0, void 0, function* () {
             yield todo_model_1.default.create({ task });
             let crtres = {
-                "code": 201,
-                "msg": "Task Created Sucessfully!!"
+                code: 201,
+                msg: "Task Created Sucessfully!!",
             };
-            return (crtres);
+            return crtres;
         });
     }
-    ;
     getAlltask() {
         return __awaiter(this, void 0, void 0, function* () {
             yield todo_model_1.default.find();
             let getres = {
-                "code": 200,
-                "msg": "Task listed Sucessfully!!"
+                code: 200,
+                msg: "Task listed Sucessfully!!",
             };
-            return (getres);
+            return getres;
         });
     }
-    ;
     deleteTask(taskid) {
         return __awaiter(this, void 0, void 0, function* () {
-            const res = yield todo_model_1.default.deleteOne({ "_id": taskid }, { new: true });
+            const res = yield todo_model_1.default.deleteOne({ _id: taskid }, { new: true });
             console.log(res);
             let deltres = {
-                "code": 200,
-                "msg": "Task Deleted Sucessfully!!"
+                code: 200,
+                msg: "Task Deleted Sucessfully!!",
             };
-            return (deltres);
+            return deltres;
         });
     }
-    ;
     updtTask(updtask, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const updtTask = yield todo_model_1.default.findByIdAndUpdate(id, updtask, { new: true });
+            const updtTask = yield todo_model_1.default.findByIdAndUpdate(id, updtask, {
+                new: true,
+            });
             console.log(updtTask);
             let updtres = {
-                "code": 202,
-                "msg": "Task updated Sucessfully!!"
+                code: 202,
+                msg: "Task updated Sucessfully!!",
             };
-            return (updtres);
+            return updtres;
         });
     }
 }

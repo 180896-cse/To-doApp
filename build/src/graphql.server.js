@@ -27,7 +27,7 @@ require('dotenv').config({ path: path_1.default.resolve(__dirname, '../.env') })
 //   const awsconfig = {
 //     "region":"ap-south-1",
 //     "endpoint" : "https://dynamodb.ap-south-1.amazonaws.com",
-//     "accessKeyId":"AKIAWMAOUJLA5LDR2HVZ", "secretAccessKey" : "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"
+
 //   };
 //    AWS.config.update(awsconfig);
 //   //Read Operation

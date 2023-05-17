@@ -18,36 +18,8 @@ const aws_lambda_1 = require("@as-integrations/aws-lambda");
 const path_1 = __importDefault(require("path"));
 const db_connect_1 = require("./config/db.connect");
 const todo_model_1 = __importDefault(require("./models/todo.model"));
-//reading data from .env file 
-require('dotenv').config({ path: path_1.default.resolve(__dirname, '../.env') });
-// Dynmo DB Connection and all CRUD operation
-// include this into package.json file
-// "start": "ts-node-dev ./src/graphql.server.ts",
-//Dynmo DB configuration
-//   const awsconfig = {
-//     "region":"ap-south-1",
-//     "endpoint" : "https://dynamodb.ap-south-1.amazonaws.com",
-//     "accessKeyId":"AKIAWMAOUJLA5LDR2HVZ", "secretAccessKey" : "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"
-//   };
-//    AWS.config.update(awsconfig);
-//   //Read Operation
-// try{
-//   const client = new AWS.DynamoDB.DocumentClient();
-//   const tableName = 'demoDynmoDB';
-//   var params = {
-//     TableName: tableName
-// };
-// client.scan(params,(err,data)=>{
-//   if(err){
-//     console.log(`error ocured at get request ${err}`);
-//   }else{
-//     console.log(data);
-//   }
-// })
-// }
-// catch(error){
-//   console.log(error);
-// }
+//reading data from .env file
+require("dotenv").config({ path: path_1.default.resolve(__dirname, "../.env") });
 // Mongo DB database instance creation and connection function call .
 try {
     var DBConnect = new db_connect_1.Database();
@@ -56,7 +28,6 @@ try {
 catch (error) {
     console.log(`error handled at app.ts with db_connection ${error}`);
 }
-const PORT = 3003;
 const typeDefs = `#graphql
   type Task {
     id: ID!
@@ -103,17 +74,17 @@ const resolvers = {
 const server = new server_1.ApolloServer({
     typeDefs,
     resolvers,
-    introspection: process.env.NODE_ENV !== 'production'
+    introspection: process.env.NODE_ENV !== "production",
     // plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
 // server
-//   .listen(PORT)
-//   .then(({ url }) => {
-//     console.log(`GraphQL Server ready at: ${url}`);
-//   })
-//   .catch((err) => console.log(`error at server creation ${err}`));
+// .listen(PORT)
+// .then(({ url }) => {
+//   console.log(`GraphQL Server ready at: ${url}`);
+// })
+// .catch((err) => console.log(`error at server creation ${err}`));
 // export const handler = serverless(server);
-// This final export 
+// This final export for serverless
 exports.graphqlHandler = (0, aws_lambda_1.startServerAndCreateLambdaHandler)(server, 
 // We will be using the Proxy V2 handler
 aws_lambda_1.handlers.createAPIGatewayProxyEventV2RequestHandler());
