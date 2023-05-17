@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- custom Css -->
+    <link rel="stylesheet" type="text/css"  href="/404.css"/>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    Oops!</h1>
+                    {{!-- i'm receving the data of errorcode dynamically --}}
+                <h2>
+                    {{errorcode}}</h2>
+                <div class="error-details">
+                    Sorry, an error has occured, Requested page not found!
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

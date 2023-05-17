@@ -1,3 +1,10 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
 # ignore ALL .log files
 *.log
 
@@ -7,5 +14,8 @@ temp/
 # ignore Node modules Folder
 node_modules
 
-#  ignore All JSON file
-*.json
+# ignore .env files
+
+*.env
+
+
