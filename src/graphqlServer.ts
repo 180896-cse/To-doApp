@@ -1,4 +1,5 @@
 import AWS, { Config } from "aws-sdk";
+// import { ApolloServer } from "apollo-server";
 import { ApolloServer } from "@apollo/server";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import {
@@ -11,6 +12,8 @@ import todoTask from "./models/todo.model";
 
 //reading data from .env file
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
+
+
 
 // Mongo DB database instance creation and connection function call .
 try {
@@ -70,13 +73,16 @@ const resolvers = {
   },
 };
 
-const server = new ApolloServer({
+const Aserver:ApolloServer = new ApolloServer({
   typeDefs,
   resolvers,
   introspection: process.env.NODE_ENV !== "production",
   // plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
 
+
+
+// const PORT = process.env.PORT;
 // server
 // .listen(PORT)
 // .then(({ url }) => {
@@ -84,14 +90,14 @@ const server = new ApolloServer({
 // })
 // .catch((err) => console.log(`error at server creation ${err}`));
 
-// export const handler = serverless(server);
+
 
 
 
 
 // This final export for serverless
 export const graphqlHandler = startServerAndCreateLambdaHandler(
-  server,
+  Aserver,
   // We will be using the Proxy V2 handler
   handlers.createAPIGatewayProxyEventV2RequestHandler()
 );

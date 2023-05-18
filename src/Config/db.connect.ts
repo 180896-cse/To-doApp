@@ -9,7 +9,7 @@ interface Idatabase {
 
 export class Database implements Idatabase {
   DBconnect(): void {
-    var db: string = process.env.mongo_db_conn_string || ".env file mot found!";
+    var db: string = "mongodb+srv://shantanu19nagarro:Shan1234@logindb.lm4a4fh.mongodb.net/?retryWrites=true&w=majority";
     mongoose
       .connect(db)
       .then(() => {

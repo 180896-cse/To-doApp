@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.graphqlHandler = void 0;
+// import { ApolloServer } from "apollo-server";
 const server_1 = require("@apollo/server");
 const aws_lambda_1 = require("@as-integrations/aws-lambda");
 const path_1 = __importDefault(require("path"));
@@ -71,20 +72,20 @@ const resolvers = {
         }),
     },
 };
-const server = new server_1.ApolloServer({
+const Aserver = new server_1.ApolloServer({
     typeDefs,
     resolvers,
     introspection: process.env.NODE_ENV !== "production",
     // plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
+// const PORT = process.env.PORT;
 // server
 // .listen(PORT)
 // .then(({ url }) => {
 //   console.log(`GraphQL Server ready at: ${url}`);
 // })
 // .catch((err) => console.log(`error at server creation ${err}`));
-// export const handler = serverless(server);
 // This final export for serverless
-exports.graphqlHandler = (0, aws_lambda_1.startServerAndCreateLambdaHandler)(server, 
+exports.graphqlHandler = (0, aws_lambda_1.startServerAndCreateLambdaHandler)(Aserver, 
 // We will be using the Proxy V2 handler
 aws_lambda_1.handlers.createAPIGatewayProxyEventV2RequestHandler());

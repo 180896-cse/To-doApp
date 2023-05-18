@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && tsc",
+    "build": "rimraf build && tsc",
     "start": "ts-node-dev ./src/graphqlServer.ts",
     "deploy": "serverless deploy",
     "test": "echo \"Error: no test specified\" && exit 1"

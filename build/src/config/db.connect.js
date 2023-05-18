@@ -10,7 +10,7 @@ const path_1 = __importDefault(require("path"));
 require("dotenv").config({ path: path_1.default.resolve(__dirname, "../../.env") });
 class Database {
     DBconnect() {
-        var db = process.env.mongo_db_conn_string || ".env file mot found!";
+        var db = "mongodb+srv://shantanu19nagarro:Shan1234@logindb.lm4a4fh.mongodb.net/?retryWrites=true&w=majority";
         mongoose_1.default
             .connect(db)
             .then(() => {
